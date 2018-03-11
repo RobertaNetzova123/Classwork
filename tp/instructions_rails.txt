@@ -1,0 +1,13 @@
+1. rvm
+2. ruby
+3. which ruby
+4. /bin/bash --login
+5. which ruby
+6. sqlite 3
+7. (superuser) -- mitov
+8. bundle install
+9. rails s error
+10. Gemfile gem  'therubyracer'
+11. bundle install
+12. rake db:migrate
+13. YAY! YOU ARE ON RAILS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
