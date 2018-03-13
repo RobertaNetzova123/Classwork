@@ -1,0 +1,37 @@
+<%= form_with(model: computer_info, local: true) do |form| %>
+  <% if computer_info.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(computer_info.errors.count, "error") %> prohibited this computer_info from being saved:</h2>
+
+      <ul>
+      <% computer_info.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color, id: :computer_info_color %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, id: :computer_info_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :processor %>
+    <%= form.text_field :processor, id: :computer_info_processor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :room_id %>
+    <%= form.number_field :room_id, id: :computer_info_room_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

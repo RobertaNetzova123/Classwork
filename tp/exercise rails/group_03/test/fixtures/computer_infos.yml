@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  color: MyString
+  brand: MyString
+  processor: MyString
+  room_id: 1
+
+two:
+  color: MyString
+  brand: MyString
+  processor: MyString
+  room_id: 1
