@@ -52,9 +52,9 @@ The progect is made using scaffold
 				#next is to change lines for the other colums
 					<td><%= student.first_name %></td>
         	<td><%= student.second_name %></td>
+		<td><%= student.email %></td>
 					<td><%= student.school.school_name %></td>
         	<td><%= student.school.school_number %></td>
-					<td><%= student.email %></td>
 				#can change the links
 					<td><%= link_to 'ShowSchool', student.school %></td>
         	<td><%= link_to 'EditSchool', edit_school_path(student.school) %></td>
