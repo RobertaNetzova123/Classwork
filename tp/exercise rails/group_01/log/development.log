@@ -17,3 +17,202 @@ Migrating to CreateSchools (20180313075518)
   [1m[35mSQL (2.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-13 08:07:59.465157"], ["updated_at", "2018-03-13 08:07:59.465157"]]
   [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/schools/new" for 127.0.0.1 at 2018-03-13 01:23:06 -0700
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SchoolsController#new as HTML
+  Rendering schools/new.html.erb within layouts/application
+  Rendered schools/_form.html.erb (136.7ms)
+  Rendered schools/new.html.erb within layouts/application (142.7ms)
+Completed 200 OK in 3621ms (Views: 3473.6ms | ActiveRecord: 5.9ms)
+
+
+Started POST "/schools" for 127.0.0.1 at 2018-03-13 01:23:21 -0700
+Processing by SchoolsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GdWyV9Uuxxasq0gwRLDqq9odRjAEB0EkXPghdUF28RAjUA0sTyLNtuUNSUV0QtL/ITsQroBu3GXv0nDD+Wv8TQ==", "school"=>{"school_name"=>"mitov", "school_number"=>"120"}, "commit"=>"Create School"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (6.6ms)[0m  [1m[32mINSERT INTO "schools" ("school_name", "school_number", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["school_name", "mitov"], ["school_number", 120], ["created_at", "2018-03-13 08:23:21.281681"], ["updated_at", "2018-03-13 08:23:21.281681"]]
+  [1m[35m (43.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/schools/1
+Completed 302 Found in 71ms (ActiveRecord: 50.7ms)
+
+
+Started GET "/schools/1" for 127.0.0.1 at 2018-03-13 01:23:21 -0700
+Processing by SchoolsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSchool Load (0.7ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering schools/show.html.erb within layouts/application
+  Rendered schools/show.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 229ms (Views: 178.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/schools/new" for 127.0.0.1 at 2018-03-13 01:23:26 -0700
+Processing by SchoolsController#new as HTML
+  Rendering schools/new.html.erb within layouts/application
+  Rendered schools/_form.html.erb (38.7ms)
+  Rendered schools/new.html.erb within layouts/application (43.1ms)
+Completed 200 OK in 222ms (Views: 219.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/schools" for 127.0.0.1 at 2018-03-13 01:23:35 -0700
+Processing by SchoolsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FX90BOn+JYvSHf19NIwICEE5DL49byHnNRm6k5aZ1Dsv+st/c/IvK5u7/AgEfjBcuh9aILkGvKaGM+slLoTZZg==", "school"=>{"school_name"=>"kiril", "school_number"=>"15"}, "commit"=>"Create School"}
+  [1m[35m (0.7ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (13.9ms)[0m  [1m[32mINSERT INTO "schools" ("school_name", "school_number", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["school_name", "kiril"], ["school_number", 15], ["created_at", "2018-03-13 08:23:35.046168"], ["updated_at", "2018-03-13 08:23:35.046168"]]
+  [1m[35m (46.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/schools/2
+Completed 302 Found in 98ms (ActiveRecord: 61.4ms)
+
+
+Started GET "/schools/2" for 127.0.0.1 at 2018-03-13 01:23:35 -0700
+Processing by SchoolsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schools/show.html.erb within layouts/application
+  Rendered schools/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 175ms (Views: 160.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/students/new" for 127.0.0.1 at 2018-03-13 01:23:43 -0700
+Processing by StudentsController#new as HTML
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/_form.html.erb (30.4ms)
+  Rendered students/new.html.erb within layouts/application (45.5ms)
+Completed 200 OK in 294ms (Views: 158.4ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/students" for 127.0.0.1 at 2018-03-13 01:23:58 -0700
+Processing by StudentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vDOk/16KXF43AevQTw1Vwd/FbgUfcZkMWtRxigdHveSGthuExIZW/n6n6qV//22VJOM4m5sYBE3p/iA8v1qwuQ==", "student"=>{"first_name"=>"rety", "second_name"=>"netzova", "email"=>"abv.bg", "school_id"=>"1"}, "commit"=>"Create Student"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudent Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."school_id" = ? LIMIT ?[0m  [["school_id", 1], ["LIMIT", 1]]
+  [1m[36mStudent Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."second_name" = ? LIMIT ?[0m  [["second_name", "netzova"], ["LIMIT", 1]]
+  [1m[36mSchool Load (4.5ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (10.1ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "second_name", "email", "school_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "rety"], ["second_name", "netzova"], ["email", "abv.bg"], ["school_id", 1], ["created_at", "2018-03-13 08:23:58.314915"], ["updated_at", "2018-03-13 08:23:58.314915"]]
+  [1m[35m (13.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/students/1
+Completed 302 Found in 207ms (ActiveRecord: 29.6ms)
+
+
+Started GET "/students/1" for 127.0.0.1 at 2018-03-13 01:23:58 -0700
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 186ms (Views: 146.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/students/new" for 127.0.0.1 at 2018-03-13 01:24:03 -0700
+Processing by StudentsController#new as HTML
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/_form.html.erb (39.5ms)
+  Rendered students/new.html.erb within layouts/application (47.1ms)
+Completed 200 OK in 239ms (Views: 233.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/students" for 127.0.0.1 at 2018-03-13 01:24:06 -0700
+Processing by StudentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"F7Teb5N5Po/cu0Fjz6ZE/peEerK0iLFrl3teIlbgWtItMWEUCXU0L5UdQBb/VHyqbKIsLDDhLCokUQ+U7v1Xjw==", "student"=>{"first_name"=>"r", "second_name"=>"", "email"=>"", "school_id"=>""}, "commit"=>"Create Student"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudent Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."school_id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mStudent Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."second_name" = ? LIMIT ?[0m  [["second_name", ""], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/_form.html.erb (19.8ms)
+  Rendered students/new.html.erb within layouts/application (31.3ms)
+Completed 200 OK in 199ms (Views: 180.9ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/students" for 127.0.0.1 at 2018-03-13 01:24:25 -0700
+Processing by StudentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"p9aDGK85mqAmqq2WQ8+vsSeW5iMOh4kvoanywn4Dga+dUzxjNTWQAG8MrONzPZfl3LCwvYruFG4Sg6N0xh6M8g==", "student"=>{"first_name"=>"rety", "second_name"=>"netzova", "email"=>"abv.com", "school_id"=>"1"}, "commit"=>"Create Student"}
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudent Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."school_id" = ? LIMIT ?[0m  [["school_id", 1], ["LIMIT", 1]]
+  [1m[36mStudent Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."second_name" = ? LIMIT ?[0m  [["second_name", "netzova"], ["LIMIT", 1]]
+  [1m[36mSchool Load (0.5ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/_form.html.erb (21.3ms)
+  Rendered students/new.html.erb within layouts/application (40.6ms)
+Completed 200 OK in 317ms (Views: 243.8ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/students" for 127.0.0.1 at 2018-03-13 01:24:29 -0700
+Processing by StudentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hQPq24Qj9qqXxG0ZLJ7iGBVbGJkkcOinwEdSwf/4Woq/hlWgHi/8Ct5ibGwcbNpM7n1OB6AZdeZzbQN3R+VX1w==", "student"=>{"first_name"=>"rety", "second_name"=>"net", "email"=>"abv.com", "school_id"=>"1"}, "commit"=>"Create Student"}
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudent Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."school_id" = ? LIMIT ?[0m  [["school_id", 1], ["LIMIT", 1]]
+  [1m[36mStudent Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."second_name" = ? LIMIT ?[0m  [["second_name", "net"], ["LIMIT", 1]]
+  [1m[36mSchool Load (4.7ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/_form.html.erb (18.9ms)
+  Rendered students/new.html.erb within layouts/application (25.0ms)
+Completed 200 OK in 218ms (Views: 170.0ms | ActiveRecord: 6.1ms)
+
+
+Started POST "/students" for 127.0.0.1 at 2018-03-13 01:24:32 -0700
+Processing by StudentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NoJg95ORU3EvseSsmKfPa58tT1s/Wk0LlzJkmH+L/ZMMB9+MCZ1Z0WYX5dmoVfc/ZAsZxbsz0EokGDUux5bwzg==", "student"=>{"first_name"=>"rety", "second_name"=>"net", "email"=>"abv.com", "school_id"=>"2"}, "commit"=>"Create Student"}
+  [1m[35m (4.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudent Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."school_id" = ? LIMIT ?[0m  [["school_id", 2], ["LIMIT", 1]]
+  [1m[36mStudent Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "students" WHERE "students"."second_name" = ? LIMIT ?[0m  [["second_name", "net"], ["LIMIT", 1]]
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (14.1ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "second_name", "email", "school_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "rety"], ["second_name", "net"], ["email", "abv.com"], ["school_id", 2], ["created_at", "2018-03-13 08:24:32.411507"], ["updated_at", "2018-03-13 08:24:32.411507"]]
+  [1m[35m (48.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/students/2
+Completed 302 Found in 127ms (ActiveRecord: 68.1ms)
+
+
+Started GET "/students/2" for 127.0.0.1 at 2018-03-13 01:24:32 -0700
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 132ms (Views: 127.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/B_21_Roberta_Netzovaschools" for 127.0.0.1 at 2018-03-13 01:25:11 -0700
+Processing by SchoolsController#index as HTML
+  Rendering schools/index.html.erb within layouts/application
+  [1m[36mStudent Load (3.8ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[36mSchool Load (1.0ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE School Load (0.1ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE School Load (0.1ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE School Load (0.1ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendered schools/index.html.erb within layouts/application (599.6ms)
+Completed 500 Internal Server Error in 644ms (ActiveRecord: 5.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `edit_studentt_path' for #<#<Class:0x00000004e214a0>:0x007f6d7a873180>
+Did you mean?  edit_student_path
+               edit_student_url):
+    27:         <td><%= link_to 'EditSchool', edit_school_path(student.school) %></td>
+    28:         <td><%= link_to 'DestroyStudent', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    29: 	<td><%= link_to 'ShowStudetn', student %></td>
+    30:         <td><%= link_to 'EditStudent', edit_studentt_path(student.school) %></td>
+    31:         <td><%= link_to 'DestroyStudent', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    32:       </tr>
+    33:     <% end %>
+  
+app/views/schools/index.html.erb:30:in `block in _app_views_schools_index_html_erb__3594616250668854931_70054091922900'
+app/views/schools/index.html.erb:19:in `_app_views_schools_index_html_erb__3594616250668854931_70054091922900'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/B_21_Roberta_Netzovaschools" for 127.0.0.1 at 2018-03-13 01:26:23 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SchoolsController#index as HTML
+  Rendering schools/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSchool Load (0.5ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered schools/index.html.erb within layouts/application (154.9ms)
+Completed 200 OK in 1059ms (Views: 955.1ms | ActiveRecord: 11.3ms)
+
+
