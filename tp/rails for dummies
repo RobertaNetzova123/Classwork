@@ -1,5 +1,5 @@
 Task here  https://github.com/thebravoman/software_engineering2017/blob/master/e/3/1/README.md
-The progect is made using scaffold
+The project is made using scaffold
 #remove scaffold if needed
 	rake db:rollback
 	rails destroy scaffold MyScaffoldName
