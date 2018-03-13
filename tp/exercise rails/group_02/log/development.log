@@ -1,0 +1,840 @@
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (33.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (40.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTeachers (20180313084444)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "middle_name" varchar, "last_name" varchar, "title" varchar, "subject" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180313084444"]]
+  [1m[35m (11.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSubjects (20180313084521)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "subjects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "subject_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (7.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180313084521"]]
+  [1m[35m (19.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-13 09:07:47.380892"], ["updated_at", "2018-03-13 09:07:47.380892"]]
+  [1m[35m (11.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:08:13 -0700
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (149.4ms)
+  Rendered teachers/new.html.erb within layouts/application (155.9ms)
+Completed 200 OK in 2935ms (Views: 2839.3ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:08:35 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CUAaTx0VmwRURTcz8rB8BiQ2AYfvUOE+YFQ0A7BteaCRETQ1wnGu8kIhfz3YDsjeLsJRJW3ZyRTz/KC99CGykQ==", "teacher"=>{"first_name"=>"rety", "middle_name"=>"ves", "last_name"=>"net", "title"=>"pedagog", "subject"=>"bilogia"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 2.8ms)
+
+
+  
+NoMethodError (undefined method `teacher_id' for #<Teacher:0x007f1a85dfd670>
+Did you mean?  teacher
+               teacher=):
+  
+app/controllers/teachers_controller.rb:30:in `block in create'
+app/controllers/teachers_controller.rb:29:in `create'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:10:30 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (70.8ms)
+  Rendered teachers/new.html.erb within layouts/application (74.8ms)
+Completed 200 OK in 739ms (Views: 635.3ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:10:44 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VIoSH7XQEPaXV/xG/T0GEy8T1xLrYIwJHI3+jgjBAAbM2zxlarQlAIEztEjXg7LLJeeHsGnppCOPJWowTI3LNw==", "teacher"=>{"first_name"=>"r", "middle_name"=>"n", "last_name"=>"r", "title"=>"rrrr", "subject"=>"vvvv"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.7ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 4.5ms)
+
+
+  
+NoMethodError (undefined method `teacher_id' for #<Teacher:0x0000000339caa8>
+Did you mean?  teacher
+               teacher=):
+  
+app/controllers/teachers_controller.rb:31:in `block in create'
+app/controllers/teachers_controller.rb:30:in `create'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:12:07 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VIoSH7XQEPaXV/xG/T0GEy8T1xLrYIwJHI3+jgjBAAbM2zxlarQlAIEztEjXg7LLJeeHsGnppCOPJWowTI3LNw==", "teacher"=>{"first_name"=>"r", "middle_name"=>"n", "last_name"=>"r", "title"=>"rrrr", "subject"=>"vvvv"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (7.6ms)[0m  [1m[32mINSERT INTO "teachers" ("first_name", "middle_name", "last_name", "title", "subject", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "r"], ["middle_name", "n"], ["last_name", "r"], ["title", "rrrr"], ["subject", "vvvv"], ["created_at", "2018-03-13 09:12:08.898847"], ["updated_at", "2018-03-13 09:12:08.898847"]]
+  [1m[35m (37.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/teachers/1
+Completed 302 Found in 158ms (ActiveRecord: 47.3ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2018-03-13 02:12:08 -0700
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  Rendered teachers/show.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 809ms (Views: 766.7ms | ActiveRecord: 0.6ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:13:47 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (125.8ms)
+  Rendered teachers/new.html.erb within layouts/application (130.2ms)
+Completed 200 OK in 753ms (Views: 656.8ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:14:08 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0phU/Ms/xcFQE8vL7pgS/Sc6qeGkZ8GZE9guU9xzRB1KyXqGFFvwN0Z3g8XEJqYlLc75Qybu6bOAcLrtmD+PLA==", "teacher"=>{"first_name"=>"rety", "middle_name"=>"netzova", "last_name"=>"vess", "title"=>"magistur", "subject"=>"bio"}, "commit"=>"Create Teacher"}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::AssociationTypeMismatch (Subject(#36109320) expected, got "bio" which is an instance of String(#17112860)):
+  
+app/controllers/teachers_controller.rb:28:in `create'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:15:39 -0700
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (74.7ms)
+  Rendered teachers/new.html.erb within layouts/application (78.6ms)
+Completed 200 OK in 932ms (Views: 822.7ms | ActiveRecord: 6.9ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:15:43 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6qSNY3fZ/22s8i1bPpcVRtviJAlsh8r1GXWtaGkhItxy9aMZqL3Km7qWZVUUKaGe0RZ0q+4O4t+K3TnWLW3p7Q==", "teacher"=>{"first_name"=>"r", "middle_name"=>"", "last_name"=>"", "title"=>"", "subject"=>""}, "commit"=>"Create Teacher"}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::AssociationTypeMismatch (Subject(#40909200) expected, got "" which is an instance of String(#17383200)):
+  
+app/controllers/teachers_controller.rb:28:in `create'
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:15:58 -0700
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (39.5ms)
+  Rendered teachers/new.html.erb within layouts/application (54.2ms)
+Completed 200 OK in 219ms (Views: 216.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:16:09 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yhgwhP4f/nadVZTwQWXB75Xl4t9y4PT8i6l4u0/xgXVSSR7+IXvLgIsx3P5r23U3nxGyffBp3NYYAewFC71KRA==", "teacher"=>{"first_name"=>"r", "middle_name"=>"rety", "last_name"=>"bbb", "title"=>"hhh", "subject"=>"rrr"}, "commit"=>"Create Teacher"}
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::AssociationTypeMismatch (Subject(#40909200) expected, got "rrr" which is an instance of String(#17383200)):
+  
+app/controllers/teachers_controller.rb:28:in `create'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/subject/new" for 127.0.0.1 at 2018-03-13 02:17:38 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/subject/new"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/subjects/new" for 127.0.0.1 at 2018-03-13 02:17:41 -0700
+Processing by SubjectsController#new as HTML
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (84.2ms)
+  Rendered subjects/new.html.erb within layouts/application (88.2ms)
+Completed 200 OK in 1115ms (Views: 984.0ms | ActiveRecord: 3.7ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:20:07 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (94.1ms)
+  Rendered teachers/new.html.erb within layouts/application (98.9ms)
+Completed 200 OK in 971ms (Views: 875.0ms | ActiveRecord: 8.5ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:20:18 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZmMWHf86RMzaiKYIa6MfRDbSwFgovlKiawpDBZ9slDz+MjhnIF5xOszs7gZBHaucPCaQ+qo3eoj4ote72yBfDQ==", "teacher"=>{"first_name"=>"rety", "middle_name"=>"n", "last_name"=>"", "title"=>"", "subject"=>""}, "commit"=>"Create Teacher"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (18.1ms)[0m  [1m[32mINSERT INTO "teachers" ("first_name", "middle_name", "last_name", "title", "subject", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "rety"], ["middle_name", "n"], ["last_name", ""], ["title", ""], ["subject", ""], ["created_at", "2018-03-13 09:20:18.174537"], ["updated_at", "2018-03-13 09:20:18.174537"]]
+  [1m[35m (8.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/teachers/2
+Completed 302 Found in 71ms (ActiveRecord: 27.3ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2018-03-13 02:20:18 -0700
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeacher Load (8.1ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  Rendered teachers/show.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 196ms (Views: 157.2ms | ActiveRecord: 8.1ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:20:45 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZmMWHf86RMzaiKYIa6MfRDbSwFgovlKiawpDBZ9slDz+MjhnIF5xOszs7gZBHaucPCaQ+qo3eoj4ote72yBfDQ==", "teacher"=>{"first_name"=>"rety", "middle_name"=>"n", "last_name"=>"vesselinova", "title"=>"academic", "subject"=>"bio"}, "commit"=>"Create Teacher"}
+  [1m[35m (3.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (11.5ms)[0m  [1m[32mINSERT INTO "teachers" ("first_name", "middle_name", "last_name", "title", "subject", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "rety"], ["middle_name", "n"], ["last_name", "vesselinova"], ["title", "academic"], ["subject", "bio"], ["created_at", "2018-03-13 09:20:45.952943"], ["updated_at", "2018-03-13 09:20:45.952943"]]
+  [1m[35m (16.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/teachers/3
+Completed 302 Found in 54ms (ActiveRecord: 31.1ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2018-03-13 02:20:46 -0700
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  Rendered teachers/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 160ms (Views: 145.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:20:55 -0700
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (30.4ms)
+  Rendered teachers/new.html.erb within layouts/application (51.4ms)
+Completed 200 OK in 222ms (Views: 219.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:21:10 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dS5pBPAv0mFVvYku8BlfTF7kjxMJVpwwbJtsa6PNtFDtf0d+L0vnl0PZwSDap+uUVBDfsYvftBr/M/jV54F/YQ==", "teacher"=>{"first_name"=>"r", "middle_name"=>"t", "last_name"=>"nnn", "title"=>"academic", "subject"=>"algebra"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (7.9ms)[0m  [1m[32mINSERT INTO "teachers" ("first_name", "middle_name", "last_name", "title", "subject", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "r"], ["middle_name", "t"], ["last_name", "nnn"], ["title", "academic"], ["subject", "algebra"], ["created_at", "2018-03-13 09:21:10.939479"], ["updated_at", "2018-03-13 09:21:10.939479"]]
+  [1m[35m (15.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/teachers/4
+Completed 302 Found in 52ms (ActiveRecord: 23.4ms)
+
+
+Started GET "/teachers/4" for 127.0.0.1 at 2018-03-13 02:21:11 -0700
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  Rendered teachers/show.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 137ms (Views: 124.2ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:22:02 -0700
+  [1m[35m (5.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (96.7ms)
+  Rendered teachers/new.html.erb within layouts/application (105.3ms)
+Completed 200 OK in 1035ms (Views: 906.1ms | ActiveRecord: 6.5ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:22:17 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FIugWMkWgg5I2lxT2P6cWJGU9gOOT57bwoVQ6jei6IyM2o4iFnK3+F6+FF3yQCiAm2CmoQzGtvFRLcRUc+4jvQ==", "teacher"=>{"first_name"=>"r", "middle_name"=>"m", "last_name"=>"mmm", "title"=>"academic", "subject"=>"haha"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTeacher Exists (12.9ms)[0m  [1m[34mSELECT  1 AS one FROM "teachers" WHERE "teachers"."title" = ? LIMIT ?[0m  [["title", "academic"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (34.0ms)
+  Rendered teachers/new.html.erb within layouts/application (47.9ms)
+Completed 200 OK in 355ms (Views: 273.4ms | ActiveRecord: 24.9ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:23:40 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+ltDBe5AuUmdgHXg3eFRxgj3qthuzcm/QjgLr/rxLO1iCm1/MSSMv4vkPe73X+UeAgP6euxE4ZXRkJ8Rvr3n3A==", "teacher"=>{"first_name"=>"r", "middle_name"=>"m", "last_name"=>"mmm", "title"=>"philosof", "subject"=>"haha"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTeacher Exists (3.9ms)[0m  [1m[34mSELECT  1 AS one FROM "teachers" WHERE "teachers"."title" = ? LIMIT ?[0m  [["title", "philosof"], ["LIMIT", 1]]
+  [1m[35mSQL (11.3ms)[0m  [1m[32mINSERT INTO "teachers" ("first_name", "middle_name", "last_name", "title", "subject", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "r"], ["middle_name", "m"], ["last_name", "mmm"], ["title", "philosof"], ["subject", "haha"], ["created_at", "2018-03-13 09:23:40.831645"], ["updated_at", "2018-03-13 09:23:40.831645"]]
+  [1m[35m (11.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/teachers/5
+Completed 302 Found in 60ms (ActiveRecord: 26.8ms)
+
+
+Started GET "/teachers/5" for 127.0.0.1 at 2018-03-13 02:23:40 -0700
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  Rendered teachers/show.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 163ms (Views: 138.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/subjects/new" for 127.0.0.1 at 2018-03-13 02:26:12 -0700
+Processing by SubjectsController#new as HTML
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (18.5ms)
+  Rendered subjects/new.html.erb within layouts/application (45.1ms)
+Completed 200 OK in 270ms (Views: 179.2ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 02:26:35 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MfdaN+nLPRThtQb86VpdoDEM85mrszPHl8llzU76SnqppnRNNq8I4vfRTvLD5Ol4O/ijOyk6G+0EYfFzCraBSw==", "subject"=>{"subject_name"=>"bilogia", "teacher_id"=>"2"}, "commit"=>"Create Subject"}
+  [1m[35m (4.8ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSubject Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "subjects" WHERE "subjects"."teacher_id" = ? LIMIT ?[0m  [["teacher_id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (8.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (6.4ms)[0m  [1m[32mINSERT INTO "subjects" ("subject_name", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["subject_name", "bilogia"], ["teacher_id", 2], ["created_at", "2018-03-13 09:26:35.327434"], ["updated_at", "2018-03-13 09:26:35.327434"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/subjects/1
+Completed 302 Found in 221ms (ActiveRecord: 32.4ms)
+
+
+Started GET "/subjects/1" for 127.0.0.1 at 2018-03-13 02:26:35 -0700
+Processing by SubjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSubject Load (2.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering subjects/show.html.erb within layouts/application
+  Rendered subjects/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 111ms (Views: 89.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/subjects/new" for 127.0.0.1 at 2018-03-13 02:26:39 -0700
+Processing by SubjectsController#new as HTML
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (19.7ms)
+  Rendered subjects/new.html.erb within layouts/application (36.0ms)
+Completed 200 OK in 218ms (Views: 215.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 02:26:47 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qbrvOzDloHBPkz6mAiYSOsRE4HtVDEFnOhRjgUlT9CYx68FB74GVhln3dqgomKbizrCw2deFaU2pvPc/DR8/Fw==", "subject"=>{"subject_name"=>"", "teacher_id"=>"2"}, "commit"=>"Create Subject"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSubject Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "subjects" WHERE "subjects"."teacher_id" = ? LIMIT ?[0m  [["teacher_id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (20.7ms)
+  Rendered subjects/new.html.erb within layouts/application (23.6ms)
+Completed 200 OK in 188ms (Views: 161.7ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 02:27:02 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bY5jLPwXmrRSPvxIQE+a+th0s+XafFDH+KsKsEjJ6nL1301WI3OvQkRatEZq8S4i0oDjR1j1eO1rA54ODIUhQw==", "subject"=>{"subject_name"=>"rety", "teacher_id"=>"1"}, "commit"=>"Create Subject"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSubject Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "subjects" WHERE "subjects"."teacher_id" = ? LIMIT ?[0m  [["teacher_id", 1], ["LIMIT", 1]]
+  [1m[36mTeacher Load (2.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (4.8ms)[0m  [1m[32mINSERT INTO "subjects" ("subject_name", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["subject_name", "rety"], ["teacher_id", 1], ["created_at", "2018-03-13 09:27:02.440126"], ["updated_at", "2018-03-13 09:27:02.440126"]]
+  [1m[35m (13.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/subjects/2
+Completed 302 Found in 52ms (ActiveRecord: 21.2ms)
+
+
+Started GET "/subjects/2" for 127.0.0.1 at 2018-03-13 02:27:02 -0700
+Processing by SubjectsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering subjects/show.html.erb within layouts/application
+  Rendered subjects/show.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 129ms (Views: 111.0ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/B_21_Roberta_Netzovasubjects" for 127.0.0.1 at 2018-03-13 02:35:06 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SubjectsController#index as HTML
+  Rendering subjects/index.html.erb within layouts/application
+  Rendered subjects/index.html.erb within layouts/application (51.7ms)
+Completed 500 Internal Server Error in 148ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    15:   </thead>
+    16: 
+    17:   <tbody>
+    18:     <% @teachers.each do |teacher| %>
+    19:       <tr>
+    20: 	<td><%= teacher.subject.subject_name %></td>
+    21: 	<td><%= teacher.first_name %></td>
+  
+app/views/subjects/index.html.erb:18:in `_app_views_subjects_index_html_erb__4422413895076123690_70048304480080'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/B_21_Roberta_Netzovasubjects" for 127.0.0.1 at 2018-03-13 02:39:35 -0700
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#index as HTML
+  Rendering teachers/index.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects"[0m
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered teachers/index.html.erb within layouts/application (153.4ms)
+Completed 500 Internal Server Error in 250ms (ActiveRecord: 5.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `subject_name' for "":String):
+    20: 	<td><%= subject.subject_name %></td>
+    21: 	<td><%= subject.teacher.first_name %></td>
+    22: 	<td><%= subject.teacher.last_name %></td>
+    23:         <td><%= subject.teacher.subject.subject_name %></td>
+    24:         
+    25:       </tr>
+    26:     <% end %>
+  
+app/views/teachers/index.html.erb:23:in `block in _app_views_teachers_index_html_erb___1653306950961117749_31392640'
+app/views/teachers/index.html.erb:18:in `_app_views_teachers_index_html_erb___1653306950961117749_31392640'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/B_21_Roberta_Netzovasubjects" for 127.0.0.1 at 2018-03-13 02:42:22 -0700
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#index as HTML
+  Rendering teachers/index.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects"[0m
+  [1m[36mTeacher Load (8.0ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered teachers/index.html.erb within layouts/application (140.8ms)
+Completed 200 OK in 774ms (Views: 703.9ms | ActiveRecord: 11.9ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/B_21_Roberta_Netzovasubjects" for 127.0.0.1 at 2018-03-13 02:45:01 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SubjectsController#index as HTML
+  Rendering subjects/index.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects"[0m
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered subjects/index.html.erb within layouts/application (154.2ms)
+Completed 500 Internal Server Error in 219ms (ActiveRecord: 7.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `firstt_name' for #<Teacher:0x000000053194f8>
+Did you mean?  first_name
+               first_name=
+               first_name?):
+    18:       <tr>
+    19:         <td><%= subject.subject_name %></td>
+    20:         <td><%= subject.teacher.last_name %></td>
+    21: 	<td><%= subject.teacher.firstt_name %></td>
+    22: 	<td><%= subject.teacher.title %></td>
+    23:         <td><%= link_to 'Show', subject %></td>
+    24:         <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
+  
+app/views/subjects/index.html.erb:21:in `block in _app_views_subjects_index_html_erb__3880993505615650068_45287040'
+app/views/subjects/index.html.erb:17:in `_app_views_subjects_index_html_erb__3880993505615650068_45287040'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/B_21_Roberta_Netzovasubjects" for 127.0.0.1 at 2018-03-13 02:45:40 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SubjectsController#index as HTML
+  Rendering subjects/index.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects"[0m
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered subjects/index.html.erb within layouts/application (141.1ms)
+Completed 200 OK in 1056ms (Views: 1004.7ms | ActiveRecord: 5.4ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:46:46 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (129.1ms)
+  Rendered teachers/new.html.erb within layouts/application (133.8ms)
+Completed 200 OK in 742ms (Views: 655.7ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:47:36 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dBIw75Qj/YWz/7x9vWFj5f8uggnl+uUAj9XIi4bfBmjsQx6VS0fIc6Wb9HOX39c99drSq2dzzSocfVw1wpPNWQ==", "teacher"=>{"first_name"=>"iliyan", "middle_name"=>"zbaravih", "last_name"=>"tachev", "title"=>"psiholog", "subject"=>"java web"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTeacher Exists (6.9ms)[0m  [1m[34mSELECT  1 AS one FROM "teachers" WHERE "teachers"."title" = ? LIMIT ?[0m  [["title", "psiholog"], ["LIMIT", 1]]
+  [1m[35mSQL (7.8ms)[0m  [1m[32mINSERT INTO "teachers" ("first_name", "middle_name", "last_name", "title", "subject", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "iliyan"], ["middle_name", "zbaravih"], ["last_name", "tachev"], ["title", "psiholog"], ["subject", "java web"], ["created_at", "2018-03-13 09:47:36.274168"], ["updated_at", "2018-03-13 09:47:36.274168"]]
+  [1m[35m (21.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/teachers/6
+Completed 302 Found in 106ms (ActiveRecord: 37.0ms)
+
+
+Started GET "/teachers/6" for 127.0.0.1 at 2018-03-13 02:47:36 -0700
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mTeacher Load (3.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  Rendered teachers/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 163ms (Views: 143.0ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/subject" for 127.0.0.1 at 2018-03-13 02:47:49 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/subject"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/subjects/new" for 127.0.0.1 at 2018-03-13 02:47:54 -0700
+Processing by SubjectsController#new as HTML
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (22.3ms)
+  Rendered subjects/new.html.erb within layouts/application (35.2ms)
+Completed 200 OK in 622ms (Views: 229.7ms | ActiveRecord: 23.4ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 02:48:03 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Wl5i0Ws1g8BzcHQE2stP9KIOSSEFnNxJgiBVY6T+z8/CD0yrtFG2NmUUPArwdfssqPoZg4cV9GMRiMHd4LIE/g==", "subject"=>{"subject_name"=>"java web", "teacher_id"=>"6"}, "commit"=>"Create Subject"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSubject Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "subjects" WHERE "subjects"."teacher_id" = ? LIMIT ?[0m  [["teacher_id", 6], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35mSQL (11.6ms)[0m  [1m[32mINSERT INTO "subjects" ("subject_name", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["subject_name", "java web"], ["teacher_id", 6], ["created_at", "2018-03-13 09:48:03.780440"], ["updated_at", "2018-03-13 09:48:03.780440"]]
+  [1m[35m (221.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/subjects/3
+Completed 302 Found in 370ms (ActiveRecord: 234.6ms)
+
+
+Started GET "/subjects/3" for 127.0.0.1 at 2018-03-13 02:48:04 -0700
+Processing by SubjectsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSubject Load (0.7ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering subjects/show.html.erb within layouts/application
+  Rendered subjects/show.html.erb within layouts/application (29.8ms)
+Completed 200 OK in 513ms (Views: 329.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/B_21_Roberta_Netzovasubjects" for 127.0.0.1 at 2018-03-13 02:48:37 -0700
+Processing by SubjectsController#index as HTML
+  Rendering subjects/index.html.erb within layouts/application
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects"[0m
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered subjects/index.html.erb within layouts/application (109.6ms)
+Completed 200 OK in 364ms (Views: 350.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/teachers/new" for 127.0.0.1 at 2018-03-13 02:50:00 -0700
+Processing by TeachersController#new as HTML
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (52.5ms)
+  Rendered teachers/new.html.erb within layouts/application (67.9ms)
+Completed 200 OK in 321ms (Views: 318.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:50:16 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i0wBaRjlPopa6G5foW9Jf01/ZX9vVIMmzW806Zp4+KYTHS8Tx4ELfEyMJlGL0f2nR4s13e3dqwxex6BX3jQzlw==", "teacher"=>{"first_name"=>"r", "middle_name"=>"nn", "last_name"=>"ttt", "title"=>"psiholog", "subject"=>"nep"}, "commit"=>"Create Teacher"}
+  [1m[35m (3.9ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTeacher Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "teachers" WHERE "teachers"."title" = ? LIMIT ?[0m  [["title", "psiholog"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  Rendering teachers/new.html.erb within layouts/application
+  Rendered teachers/_form.html.erb (40.0ms)
+  Rendered teachers/new.html.erb within layouts/application (46.4ms)
+Completed 200 OK in 222ms (Views: 198.7ms | ActiveRecord: 4.6ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2018-03-13 02:50:24 -0700
+Processing by TeachersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a1egtVf3bmSjoUcEphvrrjOP4sZCV2wbltfgAfuGDk/zBo7PiJNbkrXFDwqMpV92OXuyZMDeRDEFf3S/v8rFfg==", "teacher"=>{"first_name"=>"r", "middle_name"=>"nn", "last_name"=>"ttt", "title"=>"dap", "subject"=>"nep"}, "commit"=>"Create Teacher"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTeacher Exists (6.1ms)[0m  [1m[34mSELECT  1 AS one FROM "teachers" WHERE "teachers"."title" = ? LIMIT ?[0m  [["title", "dap"], ["LIMIT", 1]]
+  [1m[35mSQL (5.3ms)[0m  [1m[32mINSERT INTO "teachers" ("first_name", "middle_name", "last_name", "title", "subject", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "r"], ["middle_name", "nn"], ["last_name", "ttt"], ["title", "dap"], ["subject", "nep"], ["created_at", "2018-03-13 09:50:24.771178"], ["updated_at", "2018-03-13 09:50:24.771178"]]
+  [1m[35m (11.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/teachers/7
+Completed 302 Found in 76ms (ActiveRecord: 22.6ms)
+
+
+Started GET "/teachers/7" for 127.0.0.1 at 2018-03-13 02:50:24 -0700
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mTeacher Load (5.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  Rendered teachers/show.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 167ms (Views: 154.1ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/strudents/new" for 127.0.0.1 at 2018-03-13 02:50:52 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/strudents/new"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/ssubjects/new" for 127.0.0.1 at 2018-03-13 02:51:05 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/ssubjects/new"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/subjects/new" for 127.0.0.1 at 2018-03-13 02:51:09 -0700
+Processing by SubjectsController#new as HTML
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (15.4ms)
+  Rendered subjects/new.html.erb within layouts/application (42.7ms)
+Completed 200 OK in 252ms (Views: 249.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 02:51:37 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gGJKDwopxERT0mN6WnOdqHvsZ/E/N5umEDG0VG5q2dYYM2R11U3xskW2K3RwzSlwcRg3U72+s4yDmSDqKiYS5w==", "subject"=>{"subject_name"=>"........", "teacher_id"=>"6"}, "commit"=>"Create Subject"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSubject Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "subjects" WHERE "subjects"."teacher_id" = ? LIMIT ?[0m  [["teacher_id", 6], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (10.3ms)
+  Rendered subjects/new.html.erb within layouts/application (22.2ms)
+Completed 200 OK in 219ms (Views: 190.1ms | ActiveRecord: 1.3ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/subjects" for 127.0.0.1 at 2018-03-13 02:54:16 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SubjectsController#index as HTML
+  Rendering subjects/index.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects"[0m
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered subjects/index.html.erb within layouts/application (165.6ms)
+Completed 200 OK in 892ms (Views: 772.1ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/subjects/new" for 127.0.0.1 at 2018-03-13 02:54:44 -0700
+Processing by SubjectsController#new as HTML
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (203.1ms)
+  Rendered subjects/new.html.erb within layouts/application (206.6ms)
+Completed 200 OK in 341ms (Views: 329.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 02:54:54 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JlK3FWLYoLJKu0W244GRwnOXthOH26pKBrh2U9WdfAW+A5lvvbyVRFzfDbjJPyUaeWPmsQVSgmCVEOLtkdG3NA==", "subject"=>{"subject_name"=>"........", "teacher_id"=>"3"}, "commit"=>"Create Subject"}
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant Subject::SubjectName):
+  
+app/controllers/subjects_controller.rb:28:in `create'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/subjects/new" for 127.0.0.1 at 2018-03-13 03:08:36 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SubjectsController#new as HTML
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (60.6ms)
+  Rendered subjects/new.html.erb within layouts/application (66.0ms)
+Completed 200 OK in 644ms (Views: 561.5ms | ActiveRecord: 4.3ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 03:08:50 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UPm9tNqbPTusTkMsvNz6Fy/xhrr33Glb48iHA9y+huvIqJPOBf8IzboqCyKWYk7PJQXWGHVVQXFwYBO9mPJN2g==", "subject"=>{"subject_name"=>"random", "teacher_id"=>"8"}, "commit"=>"Create Subject"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSubject Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "subjects" WHERE "subjects"."teacher_id" = ? LIMIT ?[0m  [["teacher_id", 8], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering subjects/new.html.erb within layouts/application
+  Rendered subjects/_form.html.erb (30.2ms)
+  Rendered subjects/new.html.erb within layouts/application (39.5ms)
+Completed 200 OK in 333ms (Views: 182.0ms | ActiveRecord: 14.1ms)
+
+
+Started POST "/subjects" for 127.0.0.1 at 2018-03-13 03:09:57 -0700
+Processing by SubjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"s1s1dZidoyw+28T/1x6wd7Aq4DhXW6gLSOyMaJDP49crChsPR/mW2ii/jPH9oASvut6wmtXSgCHbRBjW1IMo5g==", "subject"=>{"subject_name"=>"random", "teacher_id"=>"4"}, "commit"=>"Create Subject"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSubject Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "subjects" WHERE "subjects"."teacher_id" = ? LIMIT ?[0m  [["teacher_id", 4], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (6.5ms)[0m  [1m[32mINSERT INTO "subjects" ("subject_name", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["subject_name", "random"], ["teacher_id", 4], ["created_at", "2018-03-13 10:09:57.386374"], ["updated_at", "2018-03-13 10:09:57.386374"]]
+  [1m[35m (30.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/subjects/4
+Completed 302 Found in 278ms (ActiveRecord: 38.7ms)
+
+
+Started GET "/subjects/4" for 127.0.0.1 at 2018-03-13 03:09:57 -0700
+Processing by SubjectsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering subjects/show.html.erb within layouts/application
+  Rendered subjects/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 195ms (Views: 170.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/B_21_Roberta_Netzovasubjects" for 127.0.0.1 at 2018-03-13 03:10:05 -0700
+Processing by SubjectsController#index as HTML
+  Rendering subjects/index.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects"[0m
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered subjects/index.html.erb within layouts/application (94.0ms)
+Completed 200 OK in 293ms (Views: 282.3ms | ActiveRecord: 2.4ms)
+
+
