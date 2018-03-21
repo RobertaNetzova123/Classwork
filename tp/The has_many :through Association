@@ -26,22 +26,39 @@ I THE SCAFFOLDING
         end
  ....................................................................................
  IV VIEW
-      app/views/film/index.html.erb
-          add sections:
-             <th>Film Name</th>
-             <th>Cinema Location</th>
-           get the values
-              <% @films.each do |film| %>
-                    <% film.cinemas.each do |cinema| %>
-                        <tr>
-                          <td><%= film.name %></td>
-                          <td><%= cinema.location %></td>
-                        </tr>
-                    <% end %>
-               <% end %>
+     I way :
+        app/views/film/index.html.erb
+            add sections:
+               <th>Film Name</th>
+               <th>Cinema Location</th>
+             get the values
+                <% @films.each do |film| %>
+                      <% film.cinemas.each do |cinema| %>
+                          <tr>
+                            <td><%= film.name %></td>
+                            <td><%= cinema.location %></td>
+                          </tr>
+                      <% end %>
+                 <% end %>
+        II way (better for me):
+           app/views/cinema_film/index.html.erb
+              add sections:
+                 <th>Film Name</th>
+                 <th>Cinema Location</th>
+               get values:
+                  <% @cinema_films.each do |cinema_film| %>
+	                    <tr>
+        	              <td><%= cinema_film.cinema.location %></td>
+        	              <td><%= cinema_film.film.name %></td>
+                      </tr>
+    		          <% end %>
+       
 ....................................................................................
 V ROUTES
       get "/B_21_Roberta_Netzovafilms/", to: "films#index"
+      or
+       get "/B_21_Roberta_Netzovafilms/", to: "cinema_films#index"
+       #depends on I or II way you choose in views
  ....................................................................................
   V THE MOMENT OF THRUTH
       rake db:migrate
