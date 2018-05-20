@@ -26,42 +26,42 @@ public class TodoListImplTest {
 			"");
 	// TODO implement tests
 	
-//	@Test
-//	public void testIsCompleted () {
-//		assertEquals(false,todoList.isCompleted());
-//		assertEquals (true,doneList.isCompleted());
-//	}
-//	
-//	@Test 
-//	public void testCompletedPercentage() {
-//		assertEquals(Double.valueOf(20.00),todoList.completedPercentage());
-//		assertEquals(Double.valueOf(100.00),doneList.completedPercentage());
-//	}
-//	
-//	@Test 
-//	public void testStatusPercentage() {
-//		assertEquals(Double.valueOf(20.00),todoList.statusPercentage(Status.DONE));
-//	}
+	@Test
+	public void testIsCompleted () {
+		assertEquals(false,todoList.isCompleted());
+		assertEquals (true,doneList.isCompleted());
+	}
+	
+	@Test 
+	public void testCompletedPercentage() {
+		assertEquals(Double.valueOf(20.00),todoList.completedPercentage());
+		assertEquals(Double.valueOf(100.00),doneList.completedPercentage());
+	}
+	
+	@Test 
+	public void testStatusPercentage() {
+		assertEquals(Double.valueOf(20.00),todoList.statusPercentage(Status.DONE));
+	}
 
-//	@Test
-//	public void testStatusCriteriaFilter() {
-//		
-//		TodoList filtered = todoList
-//				.filter(Criteria.status(Status.DONE));
-//		assertEquals(1,filtered.getTasks().size());
-//	}
-//	
-//	@Test
-//	public void testPriorityCriteriaFilter() {
-//		TodoList filtered = todoList.filter(Criteria.priority(Priority.LOW));
-//		assertEquals(3,filtered.getTasks().size());
-//	}
-//	
-//	@Test
-//	public void testJoin() {
-//		assertEquals(9,todoList.join(doneList).getTasks().size());
-//	}
-//	
+	@Test
+	public void testStatusCriteriaFilter() {
+		
+		TodoList filtered = todoList
+				.filter(Criteria.status(Status.DONE));
+		assertEquals(1,filtered.getTasks().size());
+	}
+	
+	@Test
+	public void testPriorityCriteriaFilter() {
+		TodoList filtered = todoList.filter(Criteria.priority(Priority.LOW));
+		assertEquals(3,filtered.getTasks().size());
+	}
+	
+	@Test
+	public void testJoin() {
+		assertEquals(9,todoList.join(doneList).getTasks().size());
+	}
+	
 	@Test
 	public void testFilterByTag() {
 		assertEquals(0, todoList
