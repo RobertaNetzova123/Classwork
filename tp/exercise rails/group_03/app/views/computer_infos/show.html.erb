@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @computer_info.color %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @computer_info.brand %>
+</p>
+
+<p>
+  <strong>Processor:</strong>
+  <%= @computer_info.processor %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @computer_info.room_id %>
+</p>
+
+<%= link_to 'Edit', edit_computer_info_path(@computer_info) %> |
+<%= link_to 'Back', computer_infos_path %>

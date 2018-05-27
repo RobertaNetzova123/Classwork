@@ -1,0 +1,218 @@
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (30.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (42.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComputerInfos (20180313102313)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "computer_infos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar, "brand" varchar, "processor" varchar, "room_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180313102313"]]
+  [1m[35m (20.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRooms (20180313102347)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "rooms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "room_number" integer, "room_size" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180313102347"]]
+  [1m[35m (30.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (5.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-13 10:27:03.663340"], ["updated_at", "2018-03-13 10:27:03.663340"]]
+  [1m[35m (9.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/computesinfos/new" for 127.0.0.1 at 2018-03-13 03:28:04 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/computesinfos/new"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/computerinfos/new" for 127.0.0.1 at 2018-03-13 03:28:15 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/computerinfos/new"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/computer_infos/new" for 127.0.0.1 at 2018-03-13 03:28:55 -0700
+Processing by ComputerInfosController#new as HTML
+  Rendering computer_infos/new.html.erb within layouts/application
+  Rendered computer_infos/_form.html.erb (119.2ms)
+  Rendered computer_infos/new.html.erb within layouts/application (127.5ms)
+Completed 200 OK in 3837ms (Views: 3666.2ms | ActiveRecord: 23.3ms)
+
+
+Started POST "/computer_infos" for 127.0.0.1 at 2018-03-13 03:29:19 -0700
+Processing by ComputerInfosController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"peCNkUS+p9jX8bvcXqnY/z7ZKTQzFjL11YlJWptw5dZi9Y748CbhSenCtp5uf0DzCdo9EtB5+PJ63o83jV2NeA==", "computer_info"=>{"color"=>"red", "brand"=>"nvm", "processor"=>"nekav", "room_id"=>"2"}, "commit"=>"Create Computer info"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComputerInfo Exists (10.0ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."room_id" = ? LIMIT ?[0m  [["room_id", 2], ["LIMIT", 1]]
+  [1m[36mComputerInfo Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."processor" = ? LIMIT ?[0m  [["processor", "nekav"], ["LIMIT", 1]]
+  [1m[36mRoom Load (0.7ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering computer_infos/new.html.erb within layouts/application
+  Rendered computer_infos/_form.html.erb (36.9ms)
+  Rendered computer_infos/new.html.erb within layouts/application (45.3ms)
+Completed 200 OK in 389ms (Views: 174.4ms | ActiveRecord: 19.3ms)
+
+
+Started GET "/rooms/new" for 127.0.0.1 at 2018-03-13 03:29:26 -0700
+Processing by RoomsController#new as HTML
+  Rendering rooms/new.html.erb within layouts/application
+  Rendered rooms/_form.html.erb (22.1ms)
+  Rendered rooms/new.html.erb within layouts/application (44.4ms)
+Completed 200 OK in 270ms (Views: 185.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/rooms" for 127.0.0.1 at 2018-03-13 03:29:40 -0700
+Processing by RoomsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"C5ZNwkv8t8F/H9zxhA61wteYQijmwCWFoRhJn7c8YifMg06r/2TxUEEs0bO02C3O4JtWDgWv74IOT4/yoREKiQ==", "room"=>{"room_number"=>"580", "room_size"=>"1000"}, "commit"=>"Create Room"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (8.9ms)[0m  [1m[32mINSERT INTO "rooms" ("room_number", "room_size", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["room_number", 580], ["room_size", 1000], ["created_at", "2018-03-13 10:29:40.454933"], ["updated_at", "2018-03-13 10:29:40.454933"]]
+  [1m[35m (12.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rooms/1
+Completed 302 Found in 52ms (ActiveRecord: 21.3ms)
+
+
+Started GET "/rooms/1" for 127.0.0.1 at 2018-03-13 03:29:40 -0700
+Processing by RoomsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRoom Load (1.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 217ms (Views: 142.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/computer_infos/new" for 127.0.0.1 at 2018-03-13 03:29:46 -0700
+Processing by ComputerInfosController#new as HTML
+  Rendering computer_infos/new.html.erb within layouts/application
+  Rendered computer_infos/_form.html.erb (36.2ms)
+  Rendered computer_infos/new.html.erb within layouts/application (56.6ms)
+Completed 200 OK in 277ms (Views: 273.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/computer_infos" for 127.0.0.1 at 2018-03-13 03:29:51 -0700
+Processing by ComputerInfosController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8MJwSsVcCIIGNFQTAhUUHwXZeXHY7fzmNHt5IaVNRms313MjccROEzgHWVEyw4wTMtptVzuCNuGbLL9Ms2AuxQ==", "computer_info"=>{"color"=>"red", "brand"=>"", "processor"=>"", "room_id"=>""}, "commit"=>"Create Computer info"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComputerInfo Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."room_id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mComputerInfo Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."processor" = ? LIMIT ?[0m  [["processor", ""], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering computer_infos/new.html.erb within layouts/application
+  Rendered computer_infos/_form.html.erb (17.8ms)
+  Rendered computer_infos/new.html.erb within layouts/application (33.8ms)
+Completed 200 OK in 189ms (Views: 167.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/computer_infos" for 127.0.0.1 at 2018-03-13 03:30:06 -0700
+Processing by ComputerInfosController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EM8/ZC/nmBmXWbTjCpuhR5evQBva0G5YkmO7iOkhPzbX2jwNm3/eiKlquaE6TTlLoKxUPTm/pF89NH3l/wxXmA==", "computer_info"=>{"color"=>"red", "brand"=>"nvm", "processor"=>"nekav", "room_id"=>"1"}, "commit"=>"Create Computer info"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComputerInfo Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."room_id" = ? LIMIT ?[0m  [["room_id", 1], ["LIMIT", 1]]
+  [1m[36mComputerInfo Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."processor" = ? LIMIT ?[0m  [["processor", "nekav"], ["LIMIT", 1]]
+  [1m[36mRoom Load (0.6ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (5.6ms)[0m  [1m[32mINSERT INTO "computer_infos" ("color", "brand", "processor", "room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["color", "red"], ["brand", "nvm"], ["processor", "nekav"], ["room_id", 1], ["created_at", "2018-03-13 10:30:06.290475"], ["updated_at", "2018-03-13 10:30:06.290475"]]
+  [1m[35m (8.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/computer_infos/1
+Completed 302 Found in 67ms (ActiveRecord: 15.7ms)
+
+
+Started GET "/computer_infos/1" for 127.0.0.1 at 2018-03-13 03:30:06 -0700
+Processing by ComputerInfosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComputerInfo Load (0.6ms)[0m  [1m[34mSELECT  "computer_infos".* FROM "computer_infos" WHERE "computer_infos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering computer_infos/show.html.erb within layouts/application
+  Rendered computer_infos/show.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 184ms (Views: 151.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/computer_infos/new" for 127.0.0.1 at 2018-03-13 03:30:27 -0700
+Processing by ComputerInfosController#new as HTML
+  Rendering computer_infos/new.html.erb within layouts/application
+  Rendered computer_infos/_form.html.erb (21.8ms)
+  Rendered computer_infos/new.html.erb within layouts/application (48.5ms)
+Completed 200 OK in 225ms (Views: 219.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/computer_infos" for 127.0.0.1 at 2018-03-13 03:30:38 -0700
+Processing by ComputerInfosController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dLIc8X34FKEJcki8jjgTMEmbPYAcGgKdq2Gwe8qY9iSzpx+YyWBSMDdBRf6+7os8fpgppv91yJoENnYW3LWeig==", "computer_info"=>{"color"=>"rrr", "brand"=>"nqma", "processor"=>"nekav", "room_id"=>"1"}, "commit"=>"Create Computer info"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComputerInfo Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."room_id" = ? LIMIT ?[0m  [["room_id", 1], ["LIMIT", 1]]
+  [1m[36mComputerInfo Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "computer_infos" WHERE "computer_infos"."processor" = ? LIMIT ?[0m  [["processor", "nekav"], ["LIMIT", 1]]
+  [1m[36mRoom Load (0.4ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering computer_infos/new.html.erb within layouts/application
+  Rendered computer_infos/_form.html.erb (41.6ms)
+  Rendered computer_infos/new.html.erb within layouts/application (45.1ms)
+Completed 200 OK in 300ms (Views: 248.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-13 03:30:47 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/roberta/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/roberta/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (7.4ms)
+Completed 200 OK in 58ms (Views: 16.3ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/B_21_Roberta_Netzovarooms" for 127.0.0.1 at 2018-03-13 03:36:05 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ComputerInfosController#index as HTML
+  Rendering computer_infos/index.html.erb within layouts/application
+  [1m[36mComputerInfo Load (0.4ms)[0m  [1m[34mSELECT "computer_infos".* FROM "computer_infos"[0m
+  [1m[36mRoom Load (0.6ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered computer_infos/index.html.erb within layouts/application (82.7ms)
+Completed 200 OK in 1399ms (Views: 1340.7ms | ActiveRecord: 4.9ms)
+
+

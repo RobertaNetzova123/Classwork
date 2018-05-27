@@ -1,0 +1,77 @@
+Task here  https://github.com/thebravoman/software_engineering2017/blob/master/e/3/1/README.md
+The project is made using scaffold
+#remove scaffold if needed
+	rake db:rollback
+	rails destroy scaffold MyScaffoldName
+
+1. > rails new <rails project name>
+
+2. generate some scaffolds. For example:
+  > rails generate scaffold Student first_name:string second_name:string email:string school_id:string
+  > rails generate scaffold School school_name:string school_number:integer
+  
+3. add some lines in the controllers
+	1. in app/controllers/schools_controller.rb :
+		#we work in the school controller because students belong to school
+		#so we have to add students in the school controller to "declare" that connection
+		#in  def index add
+    			@students = Student.all
+ 
+4. add some lines in the models
+  	1. in app/models/school.rb :
+		#one school can have many students. Add
+			has_many :students 
+	2.in  app/models/student.rb add:
+		#the task: "creating student the school id is unique. If not the validation should fail"
+			validates :school_id, uniqueness: true 
+		#the task: "students second names should be unique"
+			validates :second_name, uniqueness: true 
+		#every student have to belong to school
+			belongs_to :school 
+
+5. now we should make the table which shows our data
+	1. in app/views/schools/index.html.erb
+		#scaffold adds automatically the colums School name and School id which looks:
+			<th>School name</th>
+	  		<th>School number</th>
+		#we should add more colums: first name, second name, email. Now the code will look like this:
+			<th>First name</th>
+     	 		<th>Second name</th>
+			<th>Email</th>
+	  		<th>School name</th>
+	  		<th>School number</th>
+	2.in тhe same file
+		#we should get the values now it looks like this:
+			<td><%= school.school_name %></td>
+        		<td><%= school.school_number %></td>
+		#so add and change some lines for the other colums:
+		#first change change the arguments of the each.do
+		#from <% @schools.each do |school| %> to:
+			<% @students.each do |student| %>
+		#next is to change lines for the other colums
+			<td><%= student.first_name %></td>
+        		<td><%= student.second_name %></td>
+			<td><%= student.email %></td>
+			<td><%= student.school.school_name %></td>
+        		<td><%= student.school.school_number %></td>
+		#can change the links
+			<td><%= link_to 'ShowSchool', student.school %></td>
+        		<td><%= link_to 'EditSchool', edit_school_path(student.school) %></td>
+        		<td><%= link_to 'DestroySchool', student.school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		
+			<td><%= link_to 'ShowStudent', student %></td>
+        		<td><%= link_to 'EditStudent', edit_student_path(student) %></td>
+        		<td><%= link_to 'DestroyStudent', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		#Have to add the connection to New Students in the end of the file
+			<%= link_to 'New Student', new_student_path %>
+	3.in config/routes.rb
+		#we should add route to our table the task says "his is available at /#{my_index}schools/ where my_index 
+		#is your class_number_firstname_lastname" example: localhost:3000/B_21_Roberta_Netzovaschools
+			get '/B_21_Roberta_Netzovaschools/', to: 'schools#index'
+		
+6. in the terminal:
+	rake db:migrate
+	rails s
+					
+        
+  

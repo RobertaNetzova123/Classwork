@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Computer Infos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Brand</th>
+      <th>Processor</th>
+      <th>Room</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @computer_infos.each do |computer_info| %>
+      <tr>
+        <td><%= computer_info.color %></td>
+        <td><%= computer_info.brand %></td>
+        <td><%= computer_info.processor %></td>
+        <td><%= computer_info.room_id %></td>
+        <td><%= link_to 'Show', computer_info %></td>
+        <td><%= link_to 'Edit', edit_computer_info_path(computer_info) %></td>
+        <td><%= link_to 'Destroy', computer_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Computer Info', new_computer_info_path %>
