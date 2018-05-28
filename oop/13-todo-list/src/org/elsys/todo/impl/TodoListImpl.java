@@ -1,13 +1,11 @@
 package org.elsys.todo.impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.elsys.todo.Criteria;
-import org.elsys.todo.impl.CriteriaImpl;
 import org.elsys.todo.Priority;
 import org.elsys.todo.Status;
 import org.elsys.todo.Task;
@@ -46,35 +44,46 @@ public class TodoListImpl implements TodoList {
 	@Override
 	public Boolean isCompleted() {
 		// TODO Auto-generated method stub
-		List <Task> doneTasks = tasks.stream()
-			.filter(t -> t.getStatus().equals(Status.DONE))
-			.collect(Collectors.toList());
-		return doneTasks.size() == tasks.size();
+		return completedPercentage().equals(100.00);
 	}
 
 	@Override
 	public Double completedPercentage() {
-		List <Task> doneTasks = tasks.stream()
-				.filter(t -> t.getStatus().equals(Status.DONE))
-				.collect(Collectors.toList());
-		
-		return (double) (Math.round(doneTasks.size()*100/tasks.size()*100)/100);
+		// TODO Auto-generated method stub
+		return matchingPercentage(new StatusImpl(Status.DONE));
 	}
 
+//	@Override
+//	public Double statusPercentage(Status status) {
+//		// TODO Auto-generated method stub
+//		List<Task> filtered = tasks.stream()
+//				.filter(t -> t.getStatus().equals(status))
+//				.collect(Collectors.toList());
+//		return sumPercentage(filtered);
+//	}
+//
+//	@Override
+//	public Double matchingPercentage(Criteria criteria) {
+//		TodoList list = new TodoListImpl(tasks);
+//		List<Task> filtered = list.filter(criteria).getTasks();
+//		
+//		return sumPercentage(filtered);
+//	}
+	
 	@Override
 	public Double statusPercentage(Status status) {
-		List <Task> doneTasks = tasks.stream()
-				.filter(t -> t.getStatus().equals(status))
-				.collect(Collectors.toList());
-		return (double) (Math.round(doneTasks.size()*100/tasks.size()*100)/100);
+		// TODO Auto-generated method stub
+		return matchingPercentage(new StatusImpl(status));
 	}
 
 	@Override
 	public Double matchingPercentage(Criteria criteria) {
-		List <Task> doneTasks = tasks.stream()
-				.filter(t -> ((CriteriaImpl) criteria).DoesEqual(t))
-				.collect(Collectors.toList());
-		return (double) (Math.round(doneTasks.size()*100/tasks.size()*100)/100);
+
+		List<Task> filtered = new TodoListImpl(tasks)
+				.filter(criteria)
+				.getTasks();
+		
+		return (double) (Math.round ((filtered.size()*100/tasks.size())*100)/100);
 	}
 
 	@Override
@@ -84,7 +93,8 @@ public class TodoListImpl implements TodoList {
 
 	@Override
 	public TodoList filter(Criteria criteria) {
-		List<Task> filtered= tasks.stream()
+		// TODO Auto-generated method stub
+		List<Task> filtered = tasks.stream()
 				.filter(t -> ((CriteriaImpl) criteria).DoesEqual(t))
 				.collect(Collectors.toList());
 		return new TodoListImpl(filtered);
@@ -92,10 +102,9 @@ public class TodoListImpl implements TodoList {
 
 	@Override
 	public int count(Criteria criteria) {
-	
-		return (int) tasks.stream()
-				.filter(t -> ((CriteriaImpl) criteria).DoesEqual(t))
-				.count();
+		// TODO Auto-generated method stub
+		
+		return new TodoListImpl(tasks).filter(criteria).getTasks().size();
 	}
 
 	@Override
@@ -104,15 +113,14 @@ public class TodoListImpl implements TodoList {
 		System.out.println(t);
 		consumer.accept(tasks.get(0));
 	}
-	
-	@Override
-	public TodoList join(TodoList other) {
-		 List<Task> otherTasks= other.getTasks();
-		 List<Task> joined = new ArrayList<>(tasks);
-		 joined.addAll(otherTasks);
-		 return new TodoListImpl(joined.stream()
-				 .distinct()
-				 .collect(Collectors.toList()));
-	}
 
+		@Override
+	public TodoList join(TodoList other) {
+		// TODO Auto-generated method stub
+		List<Task> finalList = other.getTasks();
+		finalList.addAll(tasks);
+		return new TodoListImpl ( finalList.stream()
+				.distinct()
+				.collect(Collectors.toList()));
+	}
 }
